@@ -10,18 +10,26 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
-
 require 'jeweler'
+
+$:.push File.expand_path("../lib", __FILE__)
+require "mold/version"
+
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "mold"
-  gem.homepage = "http://github.com/tjackiw/mold"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "tjackiw@gmail.com"
-  gem.authors = ["Thiago Jackiw"]
-  # dependencies defined in Gemfile
+  gem.name          = "mold"
+  gem.version       = Mold::VERSION
+  gem.platform      = Gem::Platform::RUBY
+  gem.authors       = ["Thiago Jackiw"]
+  gem.email         = "tjackiw@gmail.com"
+  gem.homepage      = "http://github.com/tjackiw/mold"
+  gem.license       = "MIT"
+  gem.summary       = %Q{ Mold is a view template handler for Rails that renders Ruby objects to JSON. }
+  gem.description   = %Q{ Mold is a view template handler for Rails that renders Ruby objects to JSON. }
+
+  gem.files         = `git ls-files`.split("\n")
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.require_paths = ["lib"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -42,8 +50,8 @@ end
 
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
