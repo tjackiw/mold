@@ -24,8 +24,8 @@ Jeweler::Tasks.new do |gem|
   gem.email         = "tjackiw@gmail.com"
   gem.homepage      = "http://github.com/tjackiw/mold"
   gem.license       = "MIT"
-  gem.summary       = %Q{ Mold is a view template handler for Rails that renders Ruby objects to JSON. }
-  gem.description   = %Q{ Mold is a view template handler for Rails that renders Ruby objects to JSON. }
+  gem.summary       = %Q{ Mold is a view template handler for Rails 3+ that renders Ruby objects to JSON. }
+  gem.description   = %Q{ Mold is a view template handler for Rails 3+ that renders Ruby objects to JSON. }
 
   gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -38,14 +38,6 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
 end
 
 task :default => :test
